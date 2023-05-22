@@ -1,0 +1,82 @@
+<div class="registrationForm">
+    <h2>Registration Form</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="submitForm()" class="common-form">
+      <div>
+        <label for="firstName">First Name:</label>
+        <input class="common-input" type="text" id="firstName" formControlName="firstName">
+        <div  style="text-align: left;" *ngIf="registrationForm.get('firstName')?.invalid && (registrationForm.get('firstName')?.dirty || registrationForm.get('firstName')?.touched)">
+          <div *ngIf="registrationForm.get('firstName')?.hasError('required')">First Name is required.</div>
+          <div *ngIf="registrationForm.get('firstName')?.hasError('pattern')">Only letters are allowed.</div>
+        </div>
+      </div>
+      <br>
+      <div>
+        <label for="lastName">Last Name:</label>
+        <input class="common-input" type="text" id="lastName" formControlName="lastName">
+        <div style="text-align: left;" *ngIf="registrationForm.get('lastName')?.invalid && (registrationForm.get('lastName')?.dirty || registrationForm.get('lastName')?.touched)">
+          <div *ngIf="registrationForm.get('lastName')?.hasError('required')">Last Name is required.</div>
+          <div *ngIf="registrationForm.get('lastName')?.hasError('pattern')">Only letters are allowed.</div>
+        </div>
+      </div>
+      <br>
+      <div>
+        <label for="email">Email:</label>
+        <input class="common-input" type="email" id="email" formControlName="email">
+        <div style="text-align: left;"  *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
+          <div *ngIf="registrationForm.get('email')?.hasError('required')">Email is required.</div>
+          <div *ngIf="registrationForm.get('email')?.hasError('email')">Invalid email format.</div>
+        </div>
+      </div>
+      <br>
+      <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input class="common-input" type="text" id="phoneNumber" formControlName="phoneNumber">
+        <div style="text-align: left;" *ngIf="registrationForm.get('phoneNumber')?.invalid && (registrationForm.get('phoneNumber')?.dirty || registrationForm.get('phoneNumber')?.touched)">
+          <div *ngIf="registrationForm.get('phoneNumber')?.hasError('required')">Phone Number is required.</div>
+          <div *ngIf="registrationForm.get('phoneNumber')?.hasError('pattern')">Only 10 digits are allowed.</div>
+        </div>
+      </div>
+      <br>
+      <div>
+        <label>Will you be attending the event?</label>
+       <span style="display: flex">
+        <div *ngFor="let option of attendanceOptions" class="radio-btn">
+            <input type="radio" [id]="option.value" [value]="option.value" formControlName="attendance">
+          <span> <label [for]="option.value">{{ option.label }}</label></span> 
+          </div>
+       </span>
+      </div>
+      <br>
+      <br>
+
+      <div>
+        <label>Besides you, how many others are accompanying you?</label>
+        <div style="display: flex; margin-top: 12px;">
+          <label for="accompanyingAdults">Adults:</label>
+          <select style="margin-left: 10px;" id="accompanyingAdults" formControlName="accompanyingAdults">
+            <option *ngFor="let i of adultOptions" [value]="i">{{ i }}</option>
+          </select>
+        </div>
+        <div style="display: flex; margin-top: 12px;">
+          <label for="accompanyingKids">Kids:</label>
+          <select style="margin-left: 10px;" id="accompanyingKids" formControlName="accompanyingKids">
+            <option *ngFor="let i of kidOptions" [value]="i">{{ i }}</option>
+          </select>
+        </div>
+        <div *ngFor="let kidControl of kidControls">
+          <label for="ageOfKid{{ kidControl.index }}">Age of Kid {{ kidControl.index }}:</label>
+          <select [id]="'ageOfKid' + kidControl.index" [formControlName]="'ageOfKid' + kidControl.index">
+            <option *ngFor="let i of ageOptions" [value]="i">{{ i }}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div>
+        <label for="noteToHost">Would you like to send a note to the host?</label>
+        <textarea class="common-input" id="noteToHost" formControlName="noteToHost"></textarea>
+      </div>
+      <div style="display: flex;justify-content: space-between;"><button  class="common-button" type="submit" [disabled]="registrationForm.invalid">Submit</button>
+        <button  class="common-button" type="reset">Clear</button></div>
+      </form>
+  </div>

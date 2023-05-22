@@ -1,0 +1,36 @@
+.header{
+    width: 100%;
+    display: flex;
+}
+h1{
+    width: 20%;
+}
+
+.header-routes{
+    width: 80%;
+    display: flex;
+    flex-direction: row-reverse; 
+}
+
+ul{
+    display: inline-flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    margin-top: 26px;
+    margin-left: 18px;
+    font-size: 18px;
+}
+
+li a {
+    text-decoration: none;
+    color: blueviolet;
+}
+
+h1 a{
+    color: blueviolet;
+    text-decoration: none;
+ }

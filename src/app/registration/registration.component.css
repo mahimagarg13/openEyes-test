@@ -1,0 +1,16 @@
+.registrationForm{
+    color: blueviolet;
+    margin-bottom:50px ;
+    margin-top: 80px;
+    text-align: center;
+}
+
+label{
+    text-align: left;
+    display: flex;
+}
+.radio-btn{
+    display: table;
+    margin-right:25px;
+    display: table;
+}
